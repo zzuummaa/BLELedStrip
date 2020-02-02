@@ -9,7 +9,9 @@
 #include "stdint.h"
 
 #define FLICKER_FREQ 60
-#define BLUE_LED_GPIO 2
+#define RED_LED_GPIO 33
+#define GREEN_LED_GPIO 25
+#define BLUE_LED_GPIO 32
 
 bool LEDStrip_init();
 void LEDStrip_update(uint8_t isOn_, uint8_t* color_);

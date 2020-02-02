@@ -70,7 +70,7 @@ static uint8_t raw_adv_data[] = {
         /* service uuid */
         0x03, 0x03, 0xFF, 0x00,
         /* device name */
-        0x0b, 0x09, 'L', 'E', 'D', '_', 'S', 't', 'r', 'i', 'p'
+        0x0a, 0x09, 'L', 'E', 'D', '_', 'S', 't', 'r', 'i', 'p'
 };
 static uint8_t raw_scan_rsp_data[] = {
         /* flags */
@@ -499,6 +499,12 @@ void app_main(void)
     ret = esp_bluedroid_enable();
     if (ret) {
         ESP_LOGE(GATTS_TABLE_TAG, "%s enable bluetooth failed: %s", __func__, esp_err_to_name(ret));
+        return;
+    }
+
+    ret = esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_DEFAULT, ESP_PWR_LVL_P9);
+    if (ret) {
+        ESP_LOGE(GATTS_TABLE_TAG, "%s set ble tx power failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
 
